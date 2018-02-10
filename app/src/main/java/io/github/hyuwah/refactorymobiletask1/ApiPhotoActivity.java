@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -14,8 +13,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import io.github.hyuwah.refactorymobiletask1.Adapter.PhotosAdapter;
 import io.github.hyuwah.refactorymobiletask1.Model.Photo;
-import io.github.hyuwah.refactorymobiletask1.Network.ApiUtils;
-import io.github.hyuwah.refactorymobiletask1.Network.IPhotoService;
+import io.github.hyuwah.refactorymobiletask1.Network.ServiceGenerator;
+import io.github.hyuwah.refactorymobiletask1.Network.JsonTypicodeService;
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -24,7 +23,7 @@ import retrofit2.Response;
 
 public class ApiPhotoActivity extends AppCompatActivity {
 
-  private IPhotoService mPhotoService;
+  private JsonTypicodeService jsonTypicodeService;
 
   // Buat recyclerview + adapter
   private List<Photo> mPhotoList = new ArrayList<>();
@@ -82,8 +81,11 @@ public class ApiPhotoActivity extends AppCompatActivity {
     mPhotoList.clear();
 
     // Fetching API with Retrofit
-    mPhotoService = ApiUtils.getAllPhoto();
-    mPhotoService.getAllPhoto().enqueue(new Callback<List<Photo>>() {
+    // Create REST adapter yang nunjuk ke JsonTypicode API endpoint
+    jsonTypicodeService = ServiceGenerator.createService(JsonTypicodeService.class);
+
+    // Execute call asynchronously
+    jsonTypicodeService.getAllPhoto().enqueue(new Callback<List<Photo>>() {
       @Override
       public void onResponse(Call<List<Photo>> call, Response<List<Photo>> response) {
         // Kalo dapet response

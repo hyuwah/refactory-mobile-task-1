@@ -10,12 +10,14 @@ import retrofit2.http.Path;
  * Created by hyuwah on 07/02/18.
  */
 
-public interface IPhotoService {
+public interface JsonTypicodeService {
+
+  // Photo Endpoint
 
   @GET("photos")
   Call<List<Photo>> getAllPhoto();
 
   @GET("photos/{id}")
-  Call<Photo> getPhoto(@Path("id") int id);
+  Call<Photo> getPhotoById(@Path("id") int id);
 
 }
