@@ -2,16 +2,29 @@
 <RelativeLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:fancy="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   tools:context="io.github.hyuwah.refactorymobiletask1.LoginActivity">
 
-  <Button
+  <com.rilixtech.materialfancybutton.MaterialFancyButton
     android:id="@+id/btn_login"
-    android:layout_centerInParent="true"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Login With Github"/>
+    android:layout_centerInParent="true"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:text="Login With Github"
+    fancy:mfb_borderColor="#aaaaaa"
+    fancy:mfb_borderWidth="3dp"
+    fancy:mfb_icon="@string/fawi_github"
+    fancy:mfb_fontIconSize="24sp"
+    fancy:mfb_iconPaddingRight="12dp"
+    fancy:mfb_defaultColor="#222326"
+    fancy:mfb_focusColor="#727273"
+    fancy:mfb_radius="30dp"/>
 
 </RelativeLayout>

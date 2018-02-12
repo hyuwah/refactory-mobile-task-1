@@ -1,7 +1,9 @@
 package io.github.hyuwah.refactorymobiletask1;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,8 +12,8 @@ import android.view.View.OnClickListener;
 import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.Toast;
+import com.rilixtech.materialfancybutton.MaterialFancyButton;
 import io.github.hyuwah.refactorymobiletask1.Model.AccessToken;
 import io.github.hyuwah.refactorymobiletask1.Network.GithubService;
 import retrofit2.Call;
@@ -24,13 +26,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginActivity extends AppCompatActivity {
 
   // Github OAuth
-  private final String GITHUB_CLIENT_ID = "your-client-id";
-  private final String GITHUB_CLIENT_SECRET = "your-client-secret";
+  private final String GITHUB_CLIENT_ID = "***REMOVED***";
+  private final String GITHUB_CLIENT_SECRET = "***REMOVED***";
   private final String GITHUB_REDIRECT_URL = "refactorymobiletask://callback"; // pastikan sama dengan callback url app yang terdaftar
   private final String GITHUB_BASE_AUTH_URL = "https://github.com/login/oauth/authorize";
 
   // View
-  private Button btnLogin;
+  private MaterialFancyButton btnLogin;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -79,11 +81,13 @@ public class LoginActivity extends AppCompatActivity {
 
   private void showGithubAuthDialog(String oauthUrl){
     final AlertDialog alert = new AlertDialog.Builder(this).create();
-    alert.setTitle("Login with Github");
+    //alert.setTitle("Login with Github");
 
     // Remove cookie biar bisa login dengan beda akun
     CookieManager cookieManager = CookieManager.getInstance();
     cookieManager.removeAllCookies(null);
+
+    final ProgressDialog pd = new ProgressDialog(this);
 
     // Setup Webview
     WebView wv = new WebView(this){ @Override public boolean onCheckIsTextEditor() { return true; } };
@@ -92,6 +96,22 @@ public class LoginActivity extends AppCompatActivity {
     wv.setFocusable(true);
     wv.getSettings().setJavaScriptEnabled(true); // Biar tombol authorize ga greyed out
     wv.setWebViewClient(new WebViewClient() {
+
+      @Override
+      public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        super.onPageStarted(view, url, favicon);
+        pd.setMessage("Loading...");
+        pd.show();
+
+      }
+
+      @Override
+      public void onPageFinished(WebView view, String url) {
+        super.onPageFinished(view, url);
+        pd.dismiss();
+
+      }
+
       @Override
       public boolean shouldOverrideUrlLoading(WebView view, String url) {
         // Handle OAuth Callback
@@ -99,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
           alert.dismiss();  // Close dialog
           Uri uri = Uri.parse(url); // Convert to Uri biar gampang parsing access tokennya
           getAccessToken(uri.getQueryParameter("code"));
-          Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
+          Toast.makeText(LoginActivity.this, "Login success, please wait...", Toast.LENGTH_SHORT).show();
           return true;
         }
 
