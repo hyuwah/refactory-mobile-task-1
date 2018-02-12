@@ -1,21 +1,35 @@
 # Refactory Mobile Task 1
 [![API](https://img.shields.io/badge/API-21%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=21)
 
-Android app to show profile and photos from Jsontypicode
+Android app to show profile and photos from Jsontypicode and OAuth with Github
 
-Task:
-1. halaman foto + nama + batch nya dan ada button masuk
-2. ketika klik masuk langsung get data dari api faker(pake retrofit)
+SubTask 1:
+
+[x] halaman foto + nama + batch nya dan ada button masuk
+
+[x] ketika klik masuk langsung get data dari api faker(pake retrofit)
+
+SubTask 2:
+
+[x] Login with github
+
+[x] Detail Photo from List photo
 
 ## Results
 
-**With Network**
+**SubTask 1**
+
+With Network
 
 ![With Network](https://res.cloudinary.com/hyuwah-github-io/image/upload/v1518162648/refactorymobiletask1-network.gif)
 
-**No Network**
+No Network
 
 ![No Network](https://res.cloudinary.com/hyuwah-github-io/image/upload/v1518163034/refactorymobiletask1-nonetwork.gif)
+
+**SubTask 2**
+
+
 
 
 ## Info
@@ -24,7 +38,9 @@ Target SDK : 26
 ## Getting Started
 
 * Clone project : `https://github.com/hyuwah/refactory-mobile-task-1.git`
-* Sync gradle, rebuild project, run
+* Sync gradle
+* Ganti client_id, client_secret & redirect / callback url dengan yang udah didaftarkan di Oauth Apps Github
+* Rebuild project, run
 
 ## 3rd Party Library Used
 

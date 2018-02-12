@@ -12,11 +12,7 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
     <activity android:name=".MainActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
 
-        <category android:name="android.intent.category.LAUNCHER"/>
-      </intent-filter>
     </activity>
     <activity
       android:label="Photo API"
@@ -25,8 +21,25 @@
     </activity>
     <activity
       android:name=".PhotoDetailActivity"
-      android:parentActivityName=".PhotoListActivity"
-      >
+      android:parentActivityName=".PhotoListActivity">
+    </activity>
+    <activity android:name=".LoginActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>
+
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW"/>
+
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+
+        <data
+          android:host="callback"
+          android:scheme="refactorymobiletask"/>
+      </intent-filter>
     </activity>
   </application>
 
