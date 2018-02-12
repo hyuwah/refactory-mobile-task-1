@@ -1,5 +1,6 @@
 package io.github.hyuwah.refactorymobiletask1;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -10,8 +11,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import io.github.hyuwah.refactorymobiletask1.Adapter.PhotosAdapter;
+import io.github.hyuwah.refactorymobiletask1.Adapter.PhotosAdapter.OnItemClickListener;
 import io.github.hyuwah.refactorymobiletask1.Model.Photo;
 import io.github.hyuwah.refactorymobiletask1.Network.ServiceGenerator;
 import io.github.hyuwah.refactorymobiletask1.Network.JsonTypicodeService;
@@ -21,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ApiPhotoActivity extends AppCompatActivity {
+public class PhotoListActivity extends AppCompatActivity {
 
   private JsonTypicodeService jsonTypicodeService;
 
@@ -39,7 +42,7 @@ public class ApiPhotoActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_api_photo);
+    setContentView(R.layout.activity_photo_list);
 
     setupView();
     fetchPhotos();
@@ -64,6 +67,20 @@ public class ApiPhotoActivity extends AppCompatActivity {
     rvPhoto = findViewById(R.id.rv_photo);
 
     photosAdapter = new PhotosAdapter(this,mPhotoList);
+    photosAdapter.setOnItemClickListener(new OnItemClickListener() {
+      @Override
+      public void onItemClick(View itemView, int position) {
+        Intent intent = new Intent(getBaseContext(), PhotoDetailActivity.class);
+
+        Photo currentPhoto = mPhotoList.get(position);
+
+        intent.putExtra(PhotoDetailActivity.KEY_ID, currentPhoto.getId().toString());
+        Log.i(this.getClass().getSimpleName(), "onItemClick: "+currentPhoto.getId().toString());
+
+        startActivity(intent);
+
+      }
+    });
 
     /// Setting RV
     // Define Layout Manager

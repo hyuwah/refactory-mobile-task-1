@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     btnApiPhoto.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(getBaseContext(),ApiPhotoActivity.class);
+        Intent intent = new Intent(getBaseContext(),PhotoListActivity.class);
         startActivity(intent);
       }
     });
