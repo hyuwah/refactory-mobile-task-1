@@ -29,8 +29,17 @@ No Network
 
 **SubTask 2**
 
+Login With Github
 
+![Github OAuth](https://res.cloudinary.com/hyuwah-github-io/image/upload/v1518531763/refactorymobiletask1-github-oauth.gif)
 
+Photo Detail
+
+![Photo Detail](https://res.cloudinary.com/hyuwah-github-io/image/upload/v1518532731/refactorymobiletask1-detail-photo.gif)
+
+Logout
+
+![Logout](https://res.cloudinary.com/hyuwah-github-io/image/upload/v1518532947/refactorymobiletask1-logout.gif)
 
 ## Info
 Target SDK : 26
@@ -39,7 +48,7 @@ Target SDK : 26
 
 * Clone project : `https://github.com/hyuwah/refactory-mobile-task-1.git`
 * Sync gradle
-* Ganti client_id, client_secret & redirect / callback url dengan yang udah didaftarkan di Oauth Apps Github
+* Ganti client_id, client_secret & redirect / callback url dengan yang udah didaftarkan di OAuth Apps Github
 * Rebuild project, run
 
 ## 3rd Party Library Used
@@ -59,6 +68,12 @@ Target SDK : 26
 **Picasso** untuk ambil gambar
 
 `compile 'com.squareup.picasso:picasso:2.5.2'`
+
+**MaterialFancyButton** & **fontawesome icon** untuk button login
+
+`compile 'com.rilixtech:materialfancybuttons:1.8.7'`
+
+`compile 'com.rilixtech:fontawesome-typeface:4.7.0.4'`
 
 ## License
 MIT
