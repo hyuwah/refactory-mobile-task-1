@@ -19,6 +19,13 @@ public class AccessToken {
   }
 
   public String getTokenType() {
+
+    if (! Character.isUpperCase(tokenType.charAt(0))) {
+      tokenType =
+          Character
+              .toString(tokenType.charAt(0))
+              .toUpperCase() + tokenType.substring(1);
+    }
     return tokenType;
   }
 }

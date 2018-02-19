@@ -16,6 +16,9 @@ import android.widget.Toast;
 import com.rilixtech.materialfancybutton.MaterialFancyButton;
 import io.github.hyuwah.refactorymobiletask1.Model.AccessToken;
 import io.github.hyuwah.refactorymobiletask1.Network.GithubService;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import okhttp3.logging.HttpLoggingInterceptor.Level;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -26,8 +29,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginActivity extends AppCompatActivity {
 
   // Github OAuth
-  private final String GITHUB_CLIENT_ID = "***REMOVED***";
-  private final String GITHUB_CLIENT_SECRET = "***REMOVED***";
+  private final String GITHUB_CLIENT_ID = "your-client-id";
+  private final String GITHUB_CLIENT_SECRET = "your-client-secret";
   private final String GITHUB_REDIRECT_URL = "refactorymobiletask://callback"; // pastikan sama dengan callback url app yang terdaftar
   private final String GITHUB_BASE_AUTH_URL = "https://github.com/login/oauth/authorize";
 
@@ -66,22 +69,14 @@ public class LoginActivity extends AppCompatActivity {
         "&redirect_url=" + GITHUB_REDIRECT_URL
     );
 
-    //Toast.makeText(this, GithubAuthUri.toString(), Toast.LENGTH_SHORT).show();
-
     // Via dialog
     showGithubAuthDialog(GithubAuthUri.toString());
 
-    // Via implicit intent
-//    Intent intent = new Intent(Intent.ACTION_VIEW, GithubAuthUri);
-//    intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY
-//        | Intent.FLAG_ACTIVITY_CLEAR_TOP); // biar ga balik ke browser kalo back
-//    startActivity(intent);
 
   }
 
   private void showGithubAuthDialog(String oauthUrl){
     final AlertDialog alert = new AlertDialog.Builder(this).create();
-    //alert.setTitle("Login with Github");
 
     // Remove cookie biar bisa login dengan beda akun
     CookieManager cookieManager = CookieManager.getInstance();
@@ -95,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
     wv.setFocusableInTouchMode(true);
     wv.setFocusable(true);
     wv.getSettings().setJavaScriptEnabled(true); // Biar tombol authorize ga greyed out
+    wv.getSettings().setUserAgentString("Android"); // In case versi webviewnya lawas dan browser not supported
     wv.setWebViewClient(new WebViewClient() {
 
       @Override
@@ -153,6 +149,9 @@ public class LoginActivity extends AppCompatActivity {
       // Bikin retrofit client dengan github service API
       Retrofit.Builder builder = new Builder()
           .baseUrl("https://github.com/")
+          .client(new OkHttpClient.Builder()
+              .addInterceptor(new HttpLoggingInterceptor().setLevel(Level.BODY))
+              .build())
           .addConverterFactory(GsonConverterFactory.create());
 
       Retrofit retrofit = builder.build();
@@ -167,12 +166,12 @@ public class LoginActivity extends AppCompatActivity {
               // Ambil objek accessToken
               AccessToken accessToken = response.body();
 
-              // Toast.makeText(LoginActivity.this,
-              //    accessToken.getTokenType() + "\n" + accessToken.getAccessToken(),
-              //    Toast.LENGTH_SHORT).show();
+              // TODO save Access token ke sharedpref
 
               // Go to profile / main activity
-              Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+              Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+              intent.putExtra("accesstoken",accessToken.getAccessToken());
+              intent.putExtra("tokentype",accessToken.getTokenType());
               startActivity(intent);
               finish();
             }

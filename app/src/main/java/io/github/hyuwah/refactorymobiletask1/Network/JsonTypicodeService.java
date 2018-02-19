@@ -12,6 +12,8 @@ import retrofit2.http.Path;
 
 public interface JsonTypicodeService {
 
+  String BASE_URL = "https://jsonplaceholder.typicode.com/";
+
   // Photo Endpoint
 
   @GET("photos")

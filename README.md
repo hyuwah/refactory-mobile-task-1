@@ -5,15 +5,17 @@ Android app to show profile and photos from Jsontypicode and OAuth with Github
 
 SubTask 1:
 
-[x] halaman foto + nama + batch nya dan ada button masuk
+- [x] halaman foto + nama + batch nya dan ada button masuk
 
-[x] ketika klik masuk langsung get data dari api faker(pake retrofit)
+- [x] ketika klik masuk langsung get data dari api faker(pake retrofit)
 
 SubTask 2:
 
-[x] Login with github
+- [x] Login with github
 
-[x] Detail Photo from List photo
+- [x] Detail Photo from List photo
+
+- [x] Data profile from Github
 
 ## Results
 
@@ -48,7 +50,7 @@ Target SDK : 26
 
 * Clone project : `https://github.com/hyuwah/refactory-mobile-task-1.git`
 * Sync gradle
-* Ganti client_id, client_secret & redirect / callback url dengan yang udah didaftarkan di OAuth Apps Github
+* Ganti client_id, client_secret & redirect / callback url di file `LoginActivity.java` dengan yang sudah didaftarkan di OAuth Apps Github
 * Rebuild project, run
 
 ## 3rd Party Library Used

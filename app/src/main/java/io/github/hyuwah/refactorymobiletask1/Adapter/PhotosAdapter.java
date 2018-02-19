@@ -59,7 +59,10 @@ public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.ViewHolder
     Photo currentPhoto = photoList.get(position);
 
     // Assign value dari object photo ke elemen view (holder)
-    holder.tvAlbumId.setText("Album Id : " + Integer.toString(currentPhoto.getAlbumId()));
+    String albumId = Integer.toString(currentPhoto.getAlbumId());
+    String id = Integer.toString(currentPhoto.getId());
+
+    holder.tvAlbumId.setText("Album Id : " + albumId);
     holder.tvId.setText("Id : " + Integer.toString(currentPhoto.getId()));
     holder.tvTitle.setText(currentPhoto.getTitle());
 

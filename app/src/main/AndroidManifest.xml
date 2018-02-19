@@ -11,13 +11,13 @@
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
-    <activity android:name=".MainActivity">
+    <activity android:name=".ProfileActivity">
 
     </activity>
     <activity
       android:label="Photo API"
       android:name=".PhotoListActivity"
-      android:parentActivityName=".MainActivity">
+      android:parentActivityName=".ProfileActivity">
     </activity>
     <activity
       android:name=".PhotoDetailActivity"

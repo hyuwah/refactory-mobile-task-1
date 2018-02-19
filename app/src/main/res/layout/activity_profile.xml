@@ -6,7 +6,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@color/colorPrimaryDark"
-  tools:context="io.github.hyuwah.refactorymobiletask1.MainActivity">
+  tools:context="io.github.hyuwah.refactorymobiletask1.ProfileActivity">
 
   <RelativeLayout
     android:id="@+id/relativeLayout"
@@ -14,20 +14,20 @@
     android:layout_height="wrap_content"
     android:padding="24dp">
     <de.hdodenhof.circleimageview.CircleImageView
-      android:id="@+id/imageView"
+      android:id="@+id/iv_profile_picture"
       android:layout_width="match_parent"
       android:layout_height="96dp"
       android:elevation="4dp"
       android:src="@drawable/pp_square"
       />
     <TextView
-      android:id="@+id/textView2"
+      android:id="@+id/tv_profile_name"
       android:textStyle="bold"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="16dp"
       android:layout_alignParentStart="true"
-      android:layout_below="@+id/imageView"
+      android:layout_below="@+id/iv_profile_picture"
       android:fontFamily="sans-serif"
       android:text="Muhammad Wahyudin"
       android:textAlignment="center"
@@ -45,7 +45,7 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="8dp"
       android:layout_alignParentStart="true"
-      android:layout_below="@+id/textView2"
+      android:layout_below="@+id/tv_profile_name"
       android:fontFamily="sans-serif"
       android:text="Batch #8 : GAMBINO"
       android:textAlignment="center"
@@ -58,34 +58,34 @@
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:weightSum="3"
+    android:orientation="vertical"
     android:layout_below="@id/relativeLayout">
 
     <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="64dp"
-      android:layout_weight="1"
+      android:id="@+id/tv_profile_github_url"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       android:gravity="center"
-      android:text="Github"
+      android:text="-"
       android:textColor="@android:color/white"
       />
 
     <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="64dp"
-      android:layout_weight="1"
+      android:id="@+id/tv_profile_github_followers"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       android:gravity="center"
-      android:text="Gitlab"
+      android:text="Followers: -"
       android:textColor="@android:color/white"
       />
 
     <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="64dp"
+      android:id="@+id/tv_profile_github_repo"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       android:layout_weight="1"
       android:gravity="center"
-      android:text="Codepen"
+      android:text="Repository: -"
       android:textColor="@android:color/white"
       />
 

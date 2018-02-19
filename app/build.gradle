@@ -44,4 +44,7 @@ dependencies {
     compile 'com.rilixtech:materialfancybuttons:1.8.7'
     // Icon
     compile 'com.rilixtech:fontawesome-typeface:4.7.0.4'
+
+    // Logging Interceptor
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
 }
